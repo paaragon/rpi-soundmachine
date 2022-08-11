@@ -9,7 +9,7 @@ export default async function(req: Request, res: Response, next: NextFunction) {
 
   const valid = await check.validate(auth);
   if (!valid) {
-    throw new UnauthorizedException();
+    return next(new UnauthorizedException());
   }
 
   next();

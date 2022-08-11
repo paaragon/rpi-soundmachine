@@ -10,10 +10,6 @@ export interface ConfigLogI {
     color: boolean;
 }
 
-export interface ConfigDB {
-    queryAlertTime: number;
-}
-
-export interface ConfigSQLiteI extends ConfigDB {
-    location: string;
+export interface ConfigButtonsI {
+    pins: number[];
 }

@@ -1,6 +1,7 @@
 import config from 'config';
 import cors from 'cors';
 import express from 'express';
+import fileUpload from 'express-fileupload';
 import httpContext from 'express-http-context';
 import { ConfigApiI } from '../config';
 import customExpress, { CustomExpress } from '../lib/customExpress/customExpress';
@@ -10,7 +11,7 @@ import errorHandler from './mdw/errorHandler';
 import methodNotAllowed from './mdw/methodNotAllowed';
 import notFound from './mdw/notFound';
 import requestUuid from './mdw/requestUuid';
-import exampleRoutes from './routes/example.routes';
+import buttonRoutes from './routes/button.routes';
 import healthRoutes from './routes/health.routes';
 
 const log = logger.child({ name: 'server.ts' });
@@ -19,7 +20,7 @@ export default class Server {
   private app: CustomExpress;
 
   constructor(
-        public port: number,
+    public port: number,
   ) {
     const customExpressLog = log.child({ name: 'customExpress' });
     this.app = customExpress({
@@ -34,6 +35,9 @@ export default class Server {
     this.app.use(httpContext.middleware);
     this.app.use(requestUuid);
     this.app.use(accessLogger);
+    this.app.use(fileUpload({
+      limits: { fileSize: 50 * 1024 * 1024 },
+    }));
     this.initRoutes();
     this.app.use(methodNotAllowed(this.app));
     this.app.use(notFound);
@@ -43,7 +47,7 @@ export default class Server {
   private initRoutes() {
     this.app.use('/health', healthRoutes);
     /** example routes. Remove then when you understand how to use it */
-    this.app.use(`/api/v${config.get<ConfigApiI>('api').version}/example`, exampleRoutes);
+    this.app.use(`/api/v${config.get<ConfigApiI>('api').version}/button`, buttonRoutes);
     /** add your routes here (use the lines above as examples) */
   }
 
