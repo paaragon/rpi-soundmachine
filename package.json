@@ -27,6 +27,7 @@
   },
   "homepage": "https://github.com/paaragon/ms-base#readme",
   "dependencies": {
+    "@types/rpi-gpio": "^2.1.1",
     "axios": "^0.27.2",
     "axios-better-stacktrace": "^2.1.2",
     "cli-table": "^0.3.11",
@@ -40,6 +41,7 @@
     "myfavouritelogger": "^1.4.1",
     "play-sound": "^1.1.5",
     "reflect-metadata": "^0.1.13",
+    "rpi-gpio": "^2.1.7",
     "sqlite3": "^5.0.8",
     "ts-node-dev": "^2.0.0",
     "typeorm": "^0.3.6",

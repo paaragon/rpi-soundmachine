@@ -1,4 +1,4 @@
-import customExpress from '../../lib/customExpress/customExpress';
+import customExpress from '../../../lib/customExpress/customExpress';
 import Controller from '../controller';
 import ButtonController from '../controllers/button.ctrl';
 import authCheck from '../mdw/authCheck';

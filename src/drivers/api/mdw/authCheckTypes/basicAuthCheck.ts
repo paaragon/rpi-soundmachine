@@ -1,5 +1,5 @@
 import config from 'config';
-import { ConfigApiI } from '../../../config';
+import { ConfigApiI } from '../../../../config';
 import AbstractCheck from './abstractCheck';
 
 export default class BasicAuthCheck implements AbstractCheck {

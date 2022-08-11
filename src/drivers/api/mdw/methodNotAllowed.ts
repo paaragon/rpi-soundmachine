@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from 'express';
-import { CustomExpress } from '../../lib/customExpress/customExpress';
+import { CustomExpress } from '../../../lib/customExpress/customExpress';
 import { MethodNotAllowedException } from '../exceptions/HttpException';
 
 export default function methodNotAllowed(app: CustomExpress) {

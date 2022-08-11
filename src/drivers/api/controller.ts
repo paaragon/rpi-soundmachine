@@ -1,6 +1,6 @@
 import config from 'config';
 import express from 'express';
-import { ConfigApiI } from '../config';
+import { ConfigApiI } from '../../config';
 import HttpException, { RequestTimeoutException } from './exceptions/HttpException';
 import Request from './schema/Request';
 import Response from './schema/Response';

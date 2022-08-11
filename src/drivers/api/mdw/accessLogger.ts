@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from 'express';
-import { accessLogger, logger } from '../../logger/logger';
+import { accessLogger, logger } from '../../../logger/logger';
 
 const accessLog = accessLogger.child({ name: 'access-logger' });
 const log = logger.child({ name: 'access-logger' });

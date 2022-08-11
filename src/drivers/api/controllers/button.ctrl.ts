@@ -1,6 +1,5 @@
 
-import soundRepo from '../../repository/sound.repo';
-import playerService from '../../services/player.service';
+import soundmachine from '../../../domains/SoundMachine';
 import ListButtonsRequest from '../schema/ListButtonsRequest';
 import ListButtonsResponse from '../schema/ListButtonsResponse';
 import PlayButtonSoundRequest from '../schema/PlayButtonSoundRequest';
@@ -10,7 +9,7 @@ import UpdateButtonResponse from '../schema/UpdateButtonResponse';
 
 export default class ButtonController {
   static async getButtons(req: ListButtonsRequest): Promise<ListButtonsResponse> {
-    const buttons = await soundRepo.getButtons();
+    const buttons = await soundmachine.getButtons();
 
     return {
       error: false,
@@ -22,7 +21,7 @@ export default class ButtonController {
     const { id } = req.params;
     const { sound } = req.files;
 
-    const button = await soundRepo.updateButton(parseInt(id, 10), sound.name, sound.data);
+    const button = await soundmachine.updateButton(parseInt(id, 10), { name: sound.name, data: sound.data });
 
     return {
       error: false,
@@ -33,9 +32,7 @@ export default class ButtonController {
   static async playButtonSound(req: PlayButtonSoundRequest): Promise<PlayButtonSoundResponse> {
     const { id } = req.params;
 
-    const button = await soundRepo.getButton(parseInt(id, 10));
-
-    playerService.play(button.path);
+    soundmachine.playButtonSound(parseInt(id, 10));
 
     return {
       error: false,

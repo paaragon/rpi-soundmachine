@@ -1,8 +1,8 @@
 import config from 'config';
 import dotenv from 'dotenv';
 import 'reflect-metadata';
-import Server from './api/server';
 import { ConfigApiI } from './config';
+import Server from './drivers/api/server';
 import { logger } from './logger/logger';
 
 dotenv.config();
@@ -18,6 +18,9 @@ log.info('Starting app...');
     const server = new Server(port);
     await server.start();
     log.info('Server started');
+
+    log.info('Starting raspberry pi controller...');
+    log.info('Raspberrypi started');
 
     log.info('application started');
   } catch (e) {
