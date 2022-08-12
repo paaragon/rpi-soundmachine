@@ -1,5 +1,5 @@
 
-import soundmachine from '../../../domains/SoundMachine';
+import soundmachine from '../../../domains/soundmachine';
 import ListButtonsRequest from '../schema/ListButtonsRequest';
 import ListButtonsResponse from '../schema/ListButtonsResponse';
 import PlayButtonSoundRequest from '../schema/PlayButtonSoundRequest';

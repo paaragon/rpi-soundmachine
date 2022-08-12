@@ -1,7 +1,5 @@
-export default interface Button {
+export default interface ButtonInRepo {
   id?: number;
-
-  pin: number;
 
   sound: string;
 

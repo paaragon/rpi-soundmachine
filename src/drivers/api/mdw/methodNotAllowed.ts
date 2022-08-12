@@ -19,6 +19,5 @@ function checkPath(endpoint: string, url: string) {
   const regexEndpoint: string = endpoint.replace(/(\:.*?)(\/|$)/g, '(.*)');
 
   const regex = new RegExp(regexEndpoint);
-  console.log('regex endpoint', regexEndpoint);
   return regex.test(url);
 }
