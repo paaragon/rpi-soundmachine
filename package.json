@@ -4,6 +4,7 @@
   "description": "This is an example microservice which can be used as code base for any Typescript microservice",
   "main": "dist/index.js",
   "scripts": {
+    "init": "npm install && npm run build && npm run start",
     "build": "tsc",
     "start": "node dist/app.js",
     "start:dev": "ts-node-dev src/app.ts",

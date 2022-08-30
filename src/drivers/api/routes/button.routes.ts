@@ -12,7 +12,7 @@ app.get('/',
     authCheck,
     Controller.validate(ListButtonsRequest),
     Controller.run(ButtonController.getButtons),
-);
+)
 
 app.put('/:id',
     authCheck,
