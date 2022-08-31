@@ -32,6 +32,12 @@ export default {
 
     // setup led
     led = new Gpio(ledPin, 'out');
+    for (let i = 0; i < 3; i++) {
+      led.writeSync(1);
+      await wait(1000);
+      led.writeSync(0);
+      await wait(1000);
+    }
 
     // clean gpio on sigint
     process.on('SIGINT', () => {
