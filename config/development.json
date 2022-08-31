@@ -11,6 +11,9 @@
     "db": {
         "location": "./data/db.sq3"
     },
+    "led": {
+        "pin": 7
+    },
     "buttons": {
         "pins": [
             1,

@@ -13,3 +13,7 @@ export interface ConfigLogI {
 export interface ConfigButtonsI {
     pins: number[];
 }
+
+export interface ConfigLedI {
+    pin: number;
+}

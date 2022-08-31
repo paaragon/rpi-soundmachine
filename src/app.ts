@@ -3,6 +3,7 @@ import dotenv from 'dotenv';
 import 'reflect-metadata';
 import { ConfigApiI } from './config';
 import Server from './drivers/api/server';
+import raspberrypi from './drivers/raspberrypi/raspberrypiSetup';
 import { logger } from './logger/logger';
 
 dotenv.config();
@@ -20,6 +21,7 @@ log.info('Starting app...');
     log.info('Server started');
 
     log.info('Starting raspberry pi controller...');
+    await raspberrypi.setUp();
     log.info('Raspberrypi started');
 
     log.info('application started');
