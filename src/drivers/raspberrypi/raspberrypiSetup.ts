@@ -40,12 +40,12 @@ export default {
     }
 
     // clean gpio on sigint
-    process.on('SIGINT', () => {
-      led.unexport();
-      for (const button of buttons) {
-        button.unexport();
-      }
-    });
+    /* process.on('SIGINT', () => {
+       led.unexport();
+       for (const button of buttons) {
+         button.unexport();
+       }
+     });*/
   },
 }
 
@@ -55,7 +55,7 @@ async function buttonHandler(channel: number, value: BinaryValue) {
   led.writeSync(1);
   // play sound
   const pinPosition = buttonsPins.indexOf(channel);
-  soundmachine.playButtonSound(pinPosition);
+  await soundmachine.playButtonSound(pinPosition);
   // turn off led
   await wait(1000);
   led.writeSync(0);

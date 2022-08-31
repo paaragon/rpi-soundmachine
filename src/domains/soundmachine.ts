@@ -49,6 +49,6 @@ export default {
       return;
     }
 
-    playerService.play(button.path);
+    await playerService.play(button.path);
   },
 }
