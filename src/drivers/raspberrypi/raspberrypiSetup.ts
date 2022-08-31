@@ -22,11 +22,11 @@ export default {
       log.info(`Button ${pin} setup`);
       const button = new Gpio(pin, 'in', 'rising', { debounceTimeout: 10 });
       buttons.push(button);
-      button.watch((err: Error, value: BinaryValue) => {
+      button.watch(async (err: Error, value: BinaryValue) => {
         if (err) {
           throw err;
         }
-        buttonHandler(pin, value);
+        await buttonHandler(pin, value);
       });
     }
 

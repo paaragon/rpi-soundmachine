@@ -12,11 +12,11 @@
         "location": "./data/db.sq3"
     },
     "led": {
-        "pin": 7
+        "pin": 4
     },
     "buttons": {
         "pins": [
-            5
+            3
         ]
     }
 }
