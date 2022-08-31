@@ -49,15 +49,19 @@ export default {
 
 
 async function buttonHandler(channel: number, value: BinaryValue) {
-  log.info(`${channel} - ${value}`);
-  // turn on led
-  led.writeSync(1);
-  // play sound
-  const pinPosition = buttonsPins.indexOf(channel);
-  await soundmachine.playButtonSound(pinPosition);
-  // turn off led
-  await wait(1000);
-  led.writeSync(0);
+  try {
+    log.info(`${channel} - ${value}`);
+    // turn on led
+    led.writeSync(1);
+    // play sound
+    const pinPosition = buttonsPins.indexOf(channel);
+    await soundmachine.playButtonSound(pinPosition);
+    // turn off led
+    await wait(1000);
+    led.writeSync(0);
+  } catch (e) {
+    log.error(e);
+  }
 }
 
 async function wait(ms: number): Promise<void> {

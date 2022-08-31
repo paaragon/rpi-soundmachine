@@ -13,13 +13,9 @@ export default {
         return;
       }
       soundIsPlaying = true;
-      const command = `vlc --alsa-audio-device hw:1,0 ${path}`;
+      const command = `vlc ${path} vlc://quit`;
       log.info(command);
       exec(command, (error, stdout, stderr) => {
-        if (error || stderr) {
-          rej(error);
-          return;
-        }
         soundIsPlaying = false;
         res();
       });

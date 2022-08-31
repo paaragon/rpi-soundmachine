@@ -41,7 +41,7 @@ export default {
     return ret;
   },
 
-  async playButtonSound(id: number) {
+  async playButtonSound(id: number): Promise<void> {
     const button = await soundRepo.getButton(id);
 
     if (!button) {
