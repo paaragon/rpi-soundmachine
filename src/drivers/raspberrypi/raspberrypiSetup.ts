@@ -38,16 +38,15 @@ export default {
       led.writeSync(0);
       await wait(1000);
     }
-
-    // clean gpio on sigint
-    /* process.on('SIGINT', () => {
-       led.unexport();
-       for (const button of buttons) {
-         button.unexport();
-       }
-     });*/
+  },
+  async stop() {
+    led.unexport();
+    for (const button of buttons) {
+      button.unexport();
+    }
   },
 }
+
 
 async function buttonHandler(channel: number, value: BinaryValue) {
   log.info(`${channel} - ${value}`);

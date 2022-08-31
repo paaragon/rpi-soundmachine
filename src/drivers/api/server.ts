@@ -3,6 +3,7 @@ import cors from 'cors';
 import express from 'express';
 import fileUpload from 'express-fileupload';
 import httpContext from 'express-http-context';
+import * as http from 'http';
 import { ConfigApiI } from '../../config';
 import customExpress, { CustomExpress } from '../../lib/customExpress/customExpress';
 import { logger } from '../../logger/logger';
@@ -18,6 +19,7 @@ const log = logger.child({ name: 'server.ts' });
 
 export default class Server {
   private app: CustomExpress;
+  private server: http.Server;
 
   constructor(
     public port: number,
@@ -53,9 +55,21 @@ export default class Server {
 
   async start() {
     return new Promise<void>((res, rej) => {
-      this.app.listen(this.port, () => {
+      this.server = this.app.listen(this.port, () => {
         this.app.printEndpoints();
         log.info(`Server is listening on port ${this.port}`);
+        res();
+      });
+    });
+  }
+
+  async stop(): Promise<void> {
+    return new Promise((res, rej) => {
+      this.server.close((err) => {
+        if (err) {
+          rej(err);
+          return;
+        }
         res();
       });
     });

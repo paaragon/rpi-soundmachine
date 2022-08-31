@@ -25,6 +25,15 @@ log.info('Starting app...');
     log.info('Raspberrypi started');
 
     log.info('application started');
+
+
+    // manage app close
+    process.on('SIGINT', async () => {
+      log.info('Stopping server');
+      await server.stop();
+      log.info('Stopping raspberrypi');
+      await raspberrypi.stop();
+    });
   } catch (e) {
     log.error(e);
     process.exit(1);
