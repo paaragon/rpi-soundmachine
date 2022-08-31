@@ -1,12 +1,13 @@
-// import Sound from 'node-aplay';
-const Sound = require('node-aplay');
+import { exec } from 'child_process';
 
 export default {
   async play(path: string): Promise<void> {
     return new Promise((res, rej) => {
-      const music = new Sound(path);
-      music.play();
-      music.on('complete', () => {
+      exec(`vlc --alsa-audio-device hw:1,0 ${path}`, (error, stdout, stderr) => {
+        if (error || stderr) {
+          rej(error);
+          return;
+        }
         res();
       });
     });
