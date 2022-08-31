@@ -1,5 +1,5 @@
 import config from 'config';
-import { Gpio } from 'onoff';
+import { BinaryValue, Gpio } from 'onoff';
 import { ConfigButtonsI, ConfigLedI } from '../../config';
 import soundmachine from '../../domains/soundmachine';
 import { logger } from '../../logger/logger';
@@ -22,7 +22,7 @@ export default {
       log.info(`Button ${pin} setup`);
       const button = new Gpio(pin, 'in', 'rising', { debounceTimeout: 10 });
       buttons.push(button);
-      button.watch((err, value) => {
+      button.watch((err: Error, value: BinaryValue) => {
         if (err) {
           throw err;
         }
@@ -43,7 +43,7 @@ export default {
   },
 }
 
-async function buttonHandler(channel: number, value: 0 | 1) {
+async function buttonHandler(channel: number, value: BinaryValue) {
   log.info(`${channel} - ${value}`);
   // turn on led
   led.writeSync(1);
