@@ -1,4 +1,5 @@
-import Sound from 'node-aplay';
+// import Sound from 'node-aplay';
+const Sound = require('node-aplay');
 
 export default {
   async play(path: string): Promise<void> {
